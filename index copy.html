@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>New Project</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+  <script>
+
+  var questionData = {
+      "id1": "question 1",
+      "id2": "question 2",
+      "id3": "question 3",
+      "id4": "question 3",
+      "id5": "question 3",
+  };
+
+  var idImages = {
+      "id1": {
+          type: 2,
+          url: "images/Icons.png",
+
+      },
+      "id2": "/",
+      "id3": "/",
+      "id4": "/",
+      "id5": "/",
+  }
+
+
+  var html = '<div id="{{html_id}}" class="ui-widget-content onclickshowmodal dragable">\
+            <img src="{{img_src}}" width="150px">\
+        </div>';
+
+
+
+
+
+  $( function() {
+
+    for (key in idImages) {
+        $("#container").append(html.replace('{{html_id}}', key).replace('{{img_src}}', idImages[key]));
+    }
+
+    // dragable
+    $( ".dragable" ).draggable();
+    // end dragable
+    
+    $(".onclickshowmodal").click(function(){
+        let divID = $(this).attr("id");
+        let question = questionData[divID];
+
+        $('#our_inner_modal_question').html(question);
+
+        $('#myModal').modal('toggle');
+        
+    })
+    
+  });
+
+  </script>
+
+
+</head>
+<body>
+  <div class="main">
+      <div class="container" id="container">
+        
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <!--<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            
+                <!-- inner modal html -->
+                <div class='our_inner_modal'>
+                    <div class='our_inner_modal_question' id="our_inner_modal_question">
+                    
+                    </div>
+                    <div class='our_inner_modal_answer'>
+                        <textarea></textarea>
+                    </div>
+                </div>
+                <!-- end inner modal html -->
+
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+
+</div>
+ 
+</body>
+</html>

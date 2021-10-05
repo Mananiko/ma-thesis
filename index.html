@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fallacies of embellishment</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles/style.css">
+
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+  <script>
+  // 1) question         1
+  // 2) link to page     2
+  // 3) archive          3
+/*
+  var questionData = {
+      "id1": "Does time exist in Internet? Describe",
+      "id2": "Can you find Kangaroos on the other side of the screen ? Describe",
+      "id3": "Does what you hear on your headphones change your perception? Describe",
+      "id4": "Can you be anyone, get anywhere, with the power of Internet? Tell me your story of those travels",
+      "id5": "Do you think you are unique in every place you exist on Internet? Describe",
+      "id6": "What does Internet think about you? Describe",
+      "id7": "Does Internet really exist? Or is it constant flux and you are temporary in Internet? Describe Tell me more",
+      "id8": "What will life be like after Internet? Tell me more ",
+      "id9": "Are you a part of an archive on Internet? Describe",
+      "id10": "Are you a copy on an Internet? Describe",
+      "id11": "Why Internet is so messy, or maybe it's just a mirror of reality? Describe",
+      "id12": "Do you think little elves work hard to show you content from internet? Describe",
+      "id13": "Do you think animals know anything about the Internet? Describe",
+      "id14": "Are virtual aliens real? Describe",
+      "id15": "When cursor is lost on your desktop, where does it go? Describe",
+      "id16": "Does your computer wallpaper create meta /or just a different world? Describe",
+      "id17": "Until when will Internet exist? Describe",
+      "id18": "Does Internet promt 'lost in translation' moemnt for it's participants? Describe",
+      "id19": "Is internet a map to travel with? Describe",
+      "id20": "Are you alive on Internet at any give point in your life? Tell me more",
+  }
+*/
+    
+    var html_type_1 = '<div id="{{html_id}}" class=" onclickshowmodal dragable noborder" >\
+            <img src="{{img_src}}" width="150px">\
+        </div>';
+    var html_type_2 = '<div id="{{html_id}}" class=" dragable noborder" >\
+           <a href="{{link}}" target="_blank"> <img src="{{img_src}}" width="150px"></a>\
+        </div>';
+    var html_type_3 = '<div id="{{html_id}}" class=" dragable noborder">\
+           <a href="{{link}}"> <img src="{{img_src}}" width="150px"></a>\
+        </div>';
+
+    var html_type_4 = '<div id="{{html_id}}" class=" dragable noborder" style="{{style}}">\
+            <img src="{{img_src}}" width="{{image_width}}">\
+        </div>';
+
+    var lighting = null;
+
+
+    // function executes immediately $( function() {});   // $( function() {})();
+    $( function() {
+
+        // callback function
+        // Becouse of Javascrit is asyncroinous, we need to use call back function.
+        $.getJSON( "data.json", function( data ) {
+            init(data);
+            getArchiveData();
+        });
+
+        
+    });
+
+    function getArchiveData(){
+        $.getJSON( "index.php?archieve=1", function( data ) {
+            if(data.length > 0){
+                let html = '';
+                data.map((el) => {
+                    $('#archiveMSG_in').append('<div>'+el.answer+'</div>');
+                })
+            }
+        });
+    }
+
+    function init(idData){
+        for (key in idData) {
+
+            if(idData[key]["type"] === 1){ 
+                $("#container").append(
+                    html_type_1
+                    .replace('{{html_id}}', key)
+                    .replace('{{img_src}}', idData[key]["image"])
+                    );
+                $( "#"+key ).draggable({ scroll: false }).css("top", idData[key]["position"][0]).css("left", idData[key]["position"][1]).css("position","absolute");
+
+            }
+            else if(idData[key]["type"] === 4){
+                $("#container").append(
+                    html_type_4
+                    .replace('{{html_id}}', key)
+                    .replace('{{style}}', "z-index: "+idData[key]["z-index"])
+                    .replace('{{image_width}}', idData[key]["image_size_width"])
+                    .replace('{{img_src}}', idData[key]["image"])
+                    );
+                $( "#"+key ).draggable({ scroll: false }).css("top", idData[key]["position"][0]).css("left", idData[key]["position"][1]).css("position","absolute");
+            }
+            else{
+                let htmlForContainer = (idData[key]["type"] === 2) ? html_type_2 : html_type_3; // shemklebuli if/else
+                $("#container").append(
+                    htmlForContainer
+                    .replace('{{html_id}}', key)
+                    .replace('{{link}}', idData[key]["data"])
+                    .replace('{{img_src}}', idData[key]["image"])
+                    );
+                $( "#"+key ).draggable({ scroll: false }).css("top", idData[key]["position"][0]).css("left", idData[key]["position"][1]).css("position","absolute");
+            }
+
+        }
+
+        $(".onclickshowmodal").click(function(){
+            
+            let divID = $(this).attr("id");
+            let question = idData[divID]["data"];
+
+            $('#our_inner_modal_question').html(question);
+
+            $('#myModal').modal('toggle');
+
+        })
+    }
+
+    function saveData(){
+        let answer = $("#answer_textarea").val();
+        let question = $("#our_inner_modal_question").html();
+
+        if(answer.length < 2){
+            alert("Answer is not correct !!!");
+            return false;
+        }
+
+        if(question.length < 2){
+            alert("Answer is not correct !!!");
+            return false;
+        }
+
+        $.ajax({ 
+            type:'POST',
+            url:"index.php",
+            data:{question:question,answer:answer},
+            dataType:'json',
+            success:function(data) {
+                if(data['msg'] === 'good'){
+                    //alert ('Data inserted succesfully !!!');
+                    if($('#archiveMSG').css('display') === 'none'){
+                        lighting = setInterval(() => {
+                            if($('#alertButton').css('background-color') == 'rgb(255, 255, 255)'){
+                                $('#alertButton').css('background-color','yellow')
+                            }
+                            else{
+                                $('#alertButton').css('background-color','white')
+                            }
+                        }, 1000)
+                        
+                    }
+                    $('#archiveMSG_in').append('<div>'+answer+'</div>');
+
+                    $("#answer_textarea").val('');
+                    $('#close').trigger('click');
+                }
+                else{
+                    alert ('Data did  not insert !!!');
+                }
+            }
+        });
+
+    }
+
+    function clickMythButton(){
+        if(lighting !== null){
+            clearInterval(lighting);
+        }
+        $("#alertButton").css('background-color','#fff');
+        $('#archiveMSG').toggle()
+    }
+  </script>
+
+
+</head>
+<body style="background-color: #008483;">
+  <div class="main">
+
+    <!-- Container -->
+    <div class="container" id="container"></div>
+    <!-- End Container -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="font-family: sans-serif">
+        <div class="modal-content" style="background-color: none; border: none;">
+            <div class="modal-header" style="border-bottom: 0px; background-color:#c3c3c3;  border-radius: 0;">
+            <!--<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+            <button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body" style="background-color:#c3c3c3">
+            
+                <!-- inner modal html -->
+                <div class='our_inner_modal'>
+                    <div class='our_inner_modal_question' id="our_inner_modal_question">
+                    
+                    </div>
+                    <div class='our_inner_modal_answer'>
+                        <textarea id="answer_textarea"></textarea>
+                    </div>
+                </div>
+                <!-- end inner modal html -->
+
+            </div>
+            <div class="modal-footer" style="border-top: 0px;background-color:#c3c3c3">
+            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+            <input type="button" value="Submit" onclick="saveData()" >
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+    <div style="position: absolute; bottom: 10px; right: 110px;">
+       
+        <div style="display: none; height: 300px; width: 300px; border: 1px solid #000; background-color: #fff;
+        position: absolute; bottom: 10px; right: 110px;" id="helpDiv">
+            Dear participant you are about to answer some questions. Your answers will help me to create a fiction generated story about the internet.
+         </div>
+        <button type="button" style="  background-color: #c3c3c3;font-weight: bold;
+    color: rgb(0, 0, 0); padding: 12px 20px; border: solid black; cursor: pointer;" onclick="$('#helpDiv').toggle()" >HELP</button>
+        
+    </div>
+    <div style="position: absolute; bottom: 10px; right: 10px;">
+       
+        <div style="display: none; height: 600px; width: 300px; overflow: auto; border: 1px solid #000; background-color: #fff; position: absolute; bottom: 63px; right: 2px;" id="archiveMSG">
+            <div id="archiveMSG_in" >
+            
+            </div>
+        </div>
+
+        <button type="button" onclick="clickMythButton();" id="alertButton" style="  background-color: #c3c3c3;
+        color: rgb(0, 0, 0); padding: 12px 20px; border: solid black; cursor: pointer; font-weight: bold;" onMouseOver="this.style.color='#0e0087'">MYTH</button>
+        
+    </div>
+</div>
+ 
+</body>
+</html>

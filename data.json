@@ -1,0 +1,196 @@
+{
+    "axali": {
+        "type": 4,
+        "image": "images/Background1.jpg",
+        "position": ["10px","10px"],
+        "z-index": -1,
+        "image_size_width": "600px"
+    },
+    "axali1": {
+        "type": 4,
+        "image": "images/Background2.jpg",
+        "position": ["40px","580px"],
+        "z-index": -1,
+        "image_size_width": "600px"
+    },
+    "axali2": {
+        "type": 4,
+        "image": "images/Background3.jpg",
+        "position": ["440px","580px"],
+        "z-index": -1,
+        "image_size_width": "600px"
+    },
+    "axali3": {
+        "type": 4,
+        "image": "images/Background4.jpg",
+        "position": ["240px","280px"],
+        "z-index": -1,
+        "image_size_width": "600px"
+    },
+    "axali4": {
+        "type": 4,
+        "image": "images/Background5.jpg",
+        "position": ["40px","480px"],
+        "z-index": -1,
+        "image_size_width": "600px"
+    },
+    "axali5": {
+        "type": 4,
+        "image": "images/Background6.jpg",
+        "position": ["540px","40px"],
+        "z-index": -1,
+        "image_size_width": "600px"
+    },
+    "axali6": {
+        "type": 4,
+        "image": "images/Background7.jpg",
+        "position": ["440px","140px"],
+        "z-index": -1,
+        "image_size_width": "600px"
+    },
+    "id1": {
+        "type": 1,
+        "image": "images/Icons.png",
+        "position": ["10px","10px"],
+        "data": "Does time exist in Internet? Describe"
+    },
+    "id2": {
+        "type": 1,
+        "image": "images/Icons_1.png",
+        "position": ["150px","150px"],
+        "data": "Does you house pet know about Internet? Describe"
+    },
+    "id3": {
+        "type": 3,
+        "image": "images/Icons_2.png",
+        "position": ["280px","130px"],
+        "data": "https://google.com"
+    },
+    "id4": {
+        "type": 1,
+        "image": "images/Icons_3.png",
+        "position": ["250px","250px"],
+        "data": "Can you find Kangaroos on the other side of the screen? Describe"
+    },
+    "id5": {
+        "type": 1,
+        "image": "images/Icons_4.png",
+        "position": ["340px","240px"],
+        "data": "Does what you hear on your headphones change your perception? Describe"
+    } ,
+    "id6": {
+        "type": 1,
+        "image": "images/Icons_5.png",
+        "position": ["440px","440px"],
+        "data": "Can you be anyone, get anywhere, with the power of Internet? Tell me your story of those travels"
+    }, 
+    "id7": {
+        "type": 1,
+        "image": "images/Icons_6.png",
+        "position": ["540px","540px"],
+        "data": "Do you think you are unique in every place you exist on Internet? Describe"
+    },
+    "id8": {
+        "type": 1,
+        "image": "images/Icons_7.png",
+        "position": ["140px","540px"],
+        "data": "What does Internet think about you? Describe"
+    },
+    "id9": {
+        "type": 1,
+        "image": "images/Icons_8.png",
+        "position": ["640px","340px"],
+        "data": "Does Internet really exist? Or is it constant flux and you are temporary in Internet? Describe Tell me more"
+    }, 
+    "id10": {
+        "type": 1,
+        "image": "images/Icons_9.png",
+        "position": ["640px","240px"],
+        "data": "What will life be like after Internet? Tell me more "
+    },
+    "id11": {
+        "type": 1,
+        "image": "images/Icons_10.png",
+        "position": ["640px","40px"],
+        "data": "Are you a part of an archive on Internet? Describe"
+    },
+    "id12": {
+        "type": 1,
+        "image": "images/Icons_11.png",
+        "position": ["280px","640px"],
+        "data": "Are you a copy on an Internet? Describe"
+    },
+    "id13": {
+        "type": 1,
+        "image": "images/Icons_12.png",
+        "position": ["540px","440px"],
+        "data": "Why Internet is so messy, or maybe it's just a mirror of reality? Describe"
+    },
+    "id14": {
+        "type": 1,
+        "image": "images/Icons_13.png",
+        "position": ["40px","840px"],
+        "data": "Do you think little elves work hard to show you content from internet? Describe"
+    },
+    "id15": {
+        "type": 1,
+        "image": "images/Icons_14.png",
+        "position": ["380px","880px"],
+        "data": "Do you think animals know anything about the Internet? Describe"
+    },
+    "id16": {
+        "type": 1,
+        "image": "images/Icons_15.png",
+        "position": ["260px","660px"],
+        "data": "Are virtual aliens real? Describe"
+    },
+    "id17": {
+        "type": 1,
+        "image": "images/Icons_16.png",
+        "position": ["180px","670px"],
+        "data":"When cursor is lost on your desktop, where does it go? Describe"
+    },
+    "id18": {
+        "type": 1,
+        "image": "images/Icons_17.png",
+        "position": ["340px","840px"],
+        "data": "Does your computer wallpaper create meta /or just a different world? Describe"
+    },
+    "id19": {
+        "type": 1,
+        "image": "images/Icons_18.png",
+        "position": ["500px","900px"],
+        "data": "Until when will Internet exist? Describe"
+    },
+    "id20": {
+        "type": 1,
+        "image": "images/Icons_19.png",
+        "position": ["540px","540px"],
+        "data": "Does Internet promt 'lost in translation' moment for it's participants? Describe"
+    },
+    "id21": {
+        "type": 1,
+        "image": "images/Icons_20.png",
+        "position": ["100px","1000px"],
+        "data": "Is internet a map to travel with? Describe"
+    },
+    "id22": {
+        "type": 1,
+        "image": "images/Icons_21.png",
+        "position": ["240px","1240px"],
+        "data": "Are you alive on Internet at any give point in your life? Tell me more"
+    },
+    "id23": {
+        "type": 2,
+        "image": "images/Icons_22.png",
+        "position": ["400px","1080px"],
+        "data": "https://de.wikipedia.org/wiki/Internet"
+    },
+    "id24": {
+        "type": 3,
+        "image": "images/Icons_23.png",
+        "position": ["30px","1080px"],
+        "data": "http://localhost/newProject29082021/doc.html"
+    }
+    
+}
